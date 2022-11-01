@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WeatherCompose</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_settings">Settings</string>
 </resources>
