@@ -1,14 +1,13 @@
 package com.example.weathercompose.ui.components
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.NavigationRes
 import androidx.annotation.StringRes
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,15 +34,25 @@ val screens = listOf(
 fun Navigation(
     modifier: Modifier = Modifier
 ) = BottomNavigation(modifier) {
-    screens.forEach { screen ->
-        BottomNavigationItem(
-            selected = screen == Screen.Home,
-            onClick = {},
-            icon = { Icon(painter = painterResource(id = screen.iconRes), contentDescription = "home icon") },
-            label = {
-                Text(text = stringResource(id = screen.stringRes))
-            }
-        )
+
+    CompositionLocalProvider(LocalContentColor provides MaterialTheme.colors.onSurface) {
+        screens.forEach { screen ->
+            BottomNavigationItem(
+                selected = screen == Screen.Home,
+                onClick = {},
+                icon = {
+                    Icon(
+                        painter = painterResource(id = screen.iconRes),
+                        contentDescription = "home icon"
+                    )
+                },
+                label = {
+                    Text(text = stringResource(id = screen.stringRes))
+                },
+                alwaysShowLabel = false,
+                unselectedContentColor = Color.LightGray
+            )
+        }
     }
 }
 
@@ -51,6 +60,15 @@ fun Navigation(
 @Composable
 fun BottomNavigationPreview() {
     WeatherComposeTheme {
+        Navigation()
+    }
+}
+
+
+@Preview()
+@Composable
+fun BottomNavigationDarkPreview() {
+    WeatherComposeTheme(darkTheme = true) {
         Navigation()
     }
 }
