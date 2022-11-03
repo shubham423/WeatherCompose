@@ -1,6 +1,5 @@
 package com.example.weathercompose.ui.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -48,53 +47,7 @@ fun HourlyForecastSheet(
     }
 }
 
-@Composable
-fun CurrentConditionCard(
-    currentConditions: CurrentCondition,
-    modifier: Modifier = Modifier
-) = Card(
-    modifier = modifier,
-    backgroundColor = MaterialTheme.colors.primary
-) {
-    Column(
-        modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = currentConditions.conditionTitle,
-            style = MaterialTheme.typography.caption,
-            color = Gray.copy(alpha = 0.5f)
-        )
 
-        Text(
-            text = currentConditions.conditionValue,
-            style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.SemiBold),
-            color = MaterialTheme.colors.onSurface
-        )
-    }
-}
-
-data class CurrentCondition(
-    val conditionTitle: String,
-    val conditionValue: String,
-)
-
-@Composable
-fun CurrentConditionsRow(
-    currentConditions: List<CurrentCondition>,
-    modifier: Modifier = Modifier
-) {
-    Row(modifier = modifier.fillMaxWidth()) {
-        currentConditions.forEach {
-            Spacer(modifier = Modifier.width(16.dp))
-            CurrentConditionCard(
-                currentConditions = it,
-                modifier = Modifier.weight(1f)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-        }
-    }
-}
 
 @Composable
 fun TopRow(modifier: Modifier = Modifier) = Row(
@@ -126,27 +79,5 @@ fun HourlyForecastSheetPreview() {
     }
     WeatherComposeTheme {
         HourlyForecastSheet(hourlyForecast = forecast)
-    }
-}
-
-@Preview
-@Composable
-fun PreviewCurrentConditionsCard() {
-    WeatherComposeTheme {
-        CurrentConditionCard(currentConditions = CurrentCondition("Wind", "250"))
-    }
-}
-
-
-@Preview
-@Composable
-fun PreviewCurrentConditionsRow() {
-    val currentConditions = listOf(
-        CurrentCondition("Wind", "234"),
-        CurrentCondition("Temp", "16"),
-        CurrentCondition("Humidity", "23%"),
-    )
-    WeatherComposeTheme {
-        CurrentConditionsRow(currentConditions = currentConditions)
     }
 }
