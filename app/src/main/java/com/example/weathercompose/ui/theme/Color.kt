@@ -11,3 +11,6 @@ val BlueLight = Color(0xFF5386E4)
 val BlueDark = Color(0xFF8AB5FF)
 
 val DarkGray = Color(0xFF4C4B63)
+val LightGray = Color(0xFFFAFAFA)
+val Gray = Color(0xFF787791)
+val Black = Color(0xFF242327)

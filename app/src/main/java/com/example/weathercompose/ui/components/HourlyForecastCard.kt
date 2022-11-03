@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.weathercompose.R
+import com.example.weathercompose.ui.theme.Black
 import com.example.weathercompose.ui.theme.WeatherComposeTheme
 
 data class HourlyForecast(
@@ -31,7 +33,6 @@ fun HourlyForecastCard(
     modifier: Modifier = Modifier
 ) = Card(
     modifier = modifier,
-    backgroundColor = Color.LightGray
 ) {
     Column(
         modifier = Modifier.padding(16.dp),
@@ -44,8 +45,15 @@ fun HourlyForecastCard(
             modifier = Modifier.size(36.dp),
             tint = Color.Unspecified
         )
-        Text(text = hourlyForecast.hour)
-        Text(text = hourlyForecast.temperature)
+        Text(
+            text = hourlyForecast.hour,
+            style = MaterialTheme.typography.body2,
+            color = Black
+        )
+        Text(
+            text = hourlyForecast.temperature,
+            style = MaterialTheme.typography.body1
+        )
 
     }
 }
@@ -59,6 +67,20 @@ fun HourlyForecastCardPreview() {
         temperature = "20"
     )
     WeatherComposeTheme {
+        HourlyForecastCard(hourlyForecast = hourlyForecast)
+    }
+}
+
+
+@Preview
+@Composable
+fun HourlyForecastCardPreviewDark() {
+    val hourlyForecast = HourlyForecast(
+        "cloudy", R.drawable.ic_cloudy,
+        hour = "19:00",
+        temperature = "20"
+    )
+    WeatherComposeTheme(darkTheme = true) {
         HourlyForecastCard(hourlyForecast = hourlyForecast)
     }
 }
