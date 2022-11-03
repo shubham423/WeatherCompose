@@ -10,7 +10,8 @@ import com.example.weathercompose.R
 
 val poppinsFont= FontFamily(
     Font(R.font.poppins_regular, FontWeight.Normal),
-    Font(R.font.poppins_semi_bold, FontWeight.SemiBold)
+    Font(R.font.poppins_semi_bold, FontWeight.SemiBold),
+    Font(R.font.poppins_medium, FontWeight.Medium),
 )
 // Set of Material typography styles to start with
 val Typography = Typography(
